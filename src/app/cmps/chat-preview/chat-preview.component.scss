@@ -1,0 +1,54 @@
+@import '../../../styles.scss';
+
+:host {
+
+    .chat-preview {
+        display: flex;
+        justify-content: space-between;
+        padding-inline: 10px;
+        padding-block: 10px;
+
+        img {
+            border-radius: 50%;
+        }
+
+        .chat-details {
+            flex-grow: 1;
+            padding-inline: 10px;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 5px;
+
+            .last-messege {
+                font-size: rem(14px);
+                color: #575757;
+
+                min-height: 20px;
+                max-width: 100px;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+
+                @media screen and (width >= 300px){
+                    max-width: 160px;
+                }
+                @media screen and (width >= 370px){
+                    max-width: 230px;
+                }
+            }
+
+            .chat-header, .chat-footer {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: 10px;
+
+                .chat-additional-data {
+                    display: flex;
+                }
+            }
+        }
+    }
+}

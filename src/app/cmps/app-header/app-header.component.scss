@@ -1,0 +1,24 @@
+@import '../../../styles.scss';
+
+:host {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    padding-inline: 10px;
+
+    height: 50px;
+
+    background-color: $clrPrimary;
+    color: $clr2;
+
+    .logo h1 {
+        font-weight: 600;
+    }
+
+    .actions {
+        > * {
+            padding-inline-end: 18px;
+        }
+    }
+}

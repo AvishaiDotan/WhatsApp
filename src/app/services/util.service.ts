@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Msg } from '../models';
 
 @Injectable({
     providedIn: 'root'
@@ -120,5 +121,48 @@ export class UtilService {
             color += letters[Math.floor(Math.random() * 16)]
         }
         return color
+    }
+
+    getMessage() {
+        const messages = ["Hello, how are you?", "I'm good, thanks for asking.", "What's new with you?", "Not much, just working from home.",
+            "I'm good, how about you?", "Just hanging out at home.", "What have you been up to?", "Not much, just watching some TV.",
+            "How was your day?", "It was alright, had a lot of work to do.", "What are you doing later?", "Not sure yet, still deciding.",
+            "Hey, what's up?", "Not much, just relaxing.", "What are you up to?", "Just finished work and now taking a break.",
+            "What's new?", "Not much, just catching up with friends.", "How's your week going?", "It's been busy, but good.",
+            "How's your day going?", "Pretty good, how about yours?", "Just hanging out at home", "Watching a movie",
+            "What you doing?", "Nothing much, just watching TV", "Just woke up, what's new?", "Had a good sleep, thanks for asking.",
+            "How's work?", "It's going well, thanks for asking.", "What's the plan for today?", "Not sure yet, still deciding.",
+            "What's on your mind?", "Just thinking about the weekend.", "How's your weekend?", "It was good, how about yours?",
+            "Just finished a workout", "Feeling good now", "Do you have plans today?", "Not yet, what do you suggest?",
+            "Just finished lunch, how about you?", "I haven't had lunch yet, what did you have?", "How's the weather?", "It's nice today.",
+            "What are you listening to?", "Listening to some music, what about you?", "What have you been reading?", "I just finished a book.",
+            "How's your family?", "They're good, thanks for asking.", "What's the latest news?", "I haven't checked, what's happening?",
+            "Just saw an interesting movie", "What was it about?", "I'm going for a walk", "Have a good walk",
+            "How's your project going?", "It's going well, thanks for asking.", "What's your favorite hobby?", "I like to read and travel.",
+            "What's your favorite food?", "I love pizza.", "What's your favorite color?", "I like blue.",
+            "How's your day going?", "It's going well, thanks for asking.", "What did you do today?", "Just finished work and now relaxing.",
+            "What's your favorite book?", "I like the Harry Potter series.", "What's your favorite movie?", "I like The Shawshank Redemption.",
+            "What's your favorite sport?", "I like soccer.", "What's your favorite TV show?", "I like Game of Thrones.",
+            "What's your favorite music?", "I like Pop music.", "What's your favorite holiday?", "I like Christmas."
+        ]
+
+        return messages[this.getRandomIntInclusive(0, messages.length - 1)]
+    }
+
+    getMessages(from: string, to: string): Msg[] {
+        const msgs = []
+        const msgsCount = this.getRandomIntInclusive(1, 20)
+        
+        for (let i = 0; i < msgsCount; i++) {
+            const destination = (Math.random() > Math.random()) ? {from, to} : {from: to, to: from}
+            const msg = {
+                from: destination.from,
+                to: destination.to,
+                msg: this.getMessage()
+            }
+            msgs.push(msg)
+        }
+        
+        return msgs
     }
 }
