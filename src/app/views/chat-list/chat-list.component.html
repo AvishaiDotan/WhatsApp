@@ -1,1 +1,6 @@
-<chat-preview *ngFor="let contact of contactsSub | async" [contact]="contact"></chat-preview>
+<chat-preview 
+    *ngFor="let contact of contactsSub | async" 
+    [contact]="contact"
+    [ngClass]="{'selected': (isSelected(contact.id.value))}"
+>
+</chat-preview>

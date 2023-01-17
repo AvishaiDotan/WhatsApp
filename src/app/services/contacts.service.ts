@@ -18,9 +18,12 @@ export class ContactsService {
         private http: HttpClient) { }
 
     private _contactsDB$ = new BehaviorSubject([]);
-    public contactsDB$ = this._contactsDB$.asObservable()
+    public contactsDB$ = this._contactsDB$.asObservable();
 
-    public async query() {
+    private _selectedContactsDB$ = new BehaviorSubject<string[]>([]);
+    public selectedContactsDB$ = this._selectedContactsDB$.asObservable();
+
+    async query() {
         let contacts = this.utilService.loadFromStorage(this.contacts_key)
 
         if (!contacts) {
@@ -43,6 +46,17 @@ export class ContactsService {
 
         this._contactsDB$.next(contacts)
         this.utilService.saveToStorage(this.contacts_key, contacts)
+    }
+
+    async selectContact(contactId: string): Promise<void> {
+        if (!contactId) return
+        const selectedContacts = this._selectedContactsDB$.getValue()
+        if (selectedContacts.find(id => contactId === id)) return
+
+        selectedContacts.push(contactId as never)
+        this._selectedContactsDB$.next(selectedContacts)
+        console.log(selectedContacts);
+        
     }
 
 

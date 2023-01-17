@@ -2,6 +2,7 @@
 
 :host {
 
+
     .chat-preview {
         display: flex;
         justify-content: space-between;
@@ -31,15 +32,17 @@
                 white-space: nowrap;
                 text-overflow: ellipsis;
 
-                @media screen and (width >= 300px){
+                @media screen and (width >=300px) {
                     max-width: 160px;
                 }
-                @media screen and (width >= 370px){
+
+                @media screen and (width >=370px) {
                     max-width: 230px;
                 }
             }
 
-            .chat-header, .chat-footer {
+            .chat-header,
+            .chat-footer {
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
@@ -47,7 +50,7 @@
 
             }
 
-            
+
         }
 
         .unread-msgs-count {
@@ -59,19 +62,17 @@
             text-align: center;
             font-size: 11px;
 
-            
+
             color: $clr2;
 
             display: flex;
             justify-content: center;
             align-items: center;
 
-            span {
-  
-            }
+            span {}
         }
 
-        
+
         .chat-additional-data {
             display: flex;
             gap: 5px;
@@ -83,6 +84,38 @@
 
         .contact-name {
             font-family: HelveticaNeueMed;
+        }
+
+        .bi {
+            color: $clr0;
+        }
+
+        .contact-img {
+            position: relative;
+            .bi-check:before {
+                transform: scale(0.0001);
+                color: $clrSecondary;
+                position: absolute;
+                right: 0;
+                bottom: 0;
+                background-color: green;
+                border-radius: 50%;
+                color: white;
+                border: 2px solid white;
+                transition: 0.3s;
+            }
+        }
+    }
+
+    &.selected {
+        .chat-preview {
+            background-color: #F2F2F2;
+        }
+
+        .contact-img {
+            .bi-check::before {
+                transform: scale(1) !important;
+            }
         }
     }
 }

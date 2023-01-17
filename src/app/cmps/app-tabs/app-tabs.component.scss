@@ -77,4 +77,15 @@
         }
     }
 
+    .unread-count {
+        padding-inline: 5px;
+        background-color: $clr2;
+        border-radius: 2em;
+        margin-inline-start: 10px;
+        color: $clrPrimary;
+
+        font-size: 12px;
+        font-family: HelveticaNeueLt;
+    }
+
 }

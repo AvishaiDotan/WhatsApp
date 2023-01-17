@@ -1,6 +1,13 @@
-<article class="chat-preview">
+<article class="chat-preview" 
+    (mousedown)="selectContact(contact.id.value)" 
+    (mouseup)="resetSelection()"
+    (touchstart)="selectContact(contact.id.value)"
+    (touchend)="resetSelection()"
+    (touchend)="resetSelection()"
+>
     <div class="contact-img">
         <img [src]="contact.picture.thumbnail" alt="">
+        <i class="bi bi-check"></i>
     </div>
     <div class="chat-details">
         <div class="chat-header">
@@ -14,8 +21,8 @@
             <p class="last-messege">{{contact.msgs[contact.msgs.length - 1].msg}}</p>
             <div class="chat-additional-data">
                 <div [ngSwitch]="contact.state">
-                    <i *ngSwitchCase="'pin'" class="bi bi-pin-angle"></i>
-                    <i *ngSwitchCase="'mute'" class="bi bi-volume-mute"></i>
+                    <i *ngSwitchCase="'pin'" class="bi bi-pin-angle-fill"></i>
+                    <i *ngSwitchCase="'mute'" class="bi bi-volume-mute-fill"></i>
                 </div>
                 <p *ngIf="contact.unread !== 0" class="unread-msgs-count">
                     {{contact.unread}}

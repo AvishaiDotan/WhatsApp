@@ -1,24 +1,31 @@
 @import '../../../styles.scss';
 
 :host {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     
-    padding-inline: 10px;
-
-    height: 50px;
-
-    background-color: $clrPrimary;
-    color: $clr2;
-
-    .logo h1 {
-        font-family: HelveticaNeueBd, helvetica;;
+    header {
+        min-height: 61px;
+        box-sizing: border-box;
     }
-
-    .actions {
-        > * {
-            padding-inline-end: 18px;
+    > * {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    
+        padding-inline: 10px;
+    
+        background-color: $clrPrimary;
+        color: $clr2;
+    }
+    .main-header {
+        .logo h1 {
+            font-family: HelveticaNeueBd, helvetica;
+            font-size: rem(18px)
+        }
+    
+        .actions {
+            >* {
+                padding-inline-end: 18px;
+            }
         }
     }
 }

@@ -1,8 +1,22 @@
-<div class="actions">
-    <i class="bi bi-three-dots-vertical"></i>
-    <i class="bi bi-search"></i>
-    <i class="bi bi-camera"></i>
-</div>
-<div class="logo">
-    <h1>WhatsApp</h1>
-</div>
+<header class="main-header" *ngIf="!selectedCount; else selectHeaderActions">
+    <div class="actions">
+        <i class="bi bi-three-dots-vertical"></i>
+        <i class="bi bi-search"></i>
+        <i class="bi bi-camera"></i>
+    </div>
+    <div class="logo">
+        <h1>WhatsApp</h1>
+    </div>
+</header>
+<ng-template class="actions-header" #selectHeaderActions>
+    <header>
+        <div class="left-actions">
+            <i class="bi bi-pin-angle-fill"></i>
+            <i class="bi bi-volume-mute-fill"></i>
+        </div>
+        <div class="right-actions">
+            <i class="bi bi-arrow-right"></i>'
+            <span class="selected-count">{{ selectedCount }}</span>
+        </div>
+    </header>
+</ng-template>
