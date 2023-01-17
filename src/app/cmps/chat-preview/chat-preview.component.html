@@ -5,14 +5,21 @@
     <div class="chat-details">
         <div class="chat-header">
             <h3 class="contact-name">{{contact.name.first}} {{contact.name.last}}</h3>
-            <p>20:24</p>
+            <p class="time" [ngStyle]="{color: contact.state !== '' ? '#21BF65' : '#575757'}">
+                {{ contact.msgs[0].timestamp | date:getDatePipe(contact.msgs[0].timestamp).pipe}}
+                {{ getDatePipe(contact.msgs[0].timestamp).additional}}
+            </p>
         </div>
         <div class="chat-footer">
             <p class="last-messege">{{contact.msgs[contact.msgs.length - 1].msg}}</p>
             <div class="chat-additional-data">
-                <p *ngIf="contact.state === 'pin'"><i class="bi bi-pin-angle"></i></p>
-                <p *ngIf="contact.state === 'mute'"><i class="bi bi-volume-mute"></i></p>
-                <p *ngIf="contact.unread !== 0" class="unread-msgs-count">{{contact.unread}}</p>
+                <div [ngSwitch]="contact.state">
+                    <i *ngSwitchCase="'pin'" class="bi bi-pin-angle"></i>
+                    <i *ngSwitchCase="'mute'" class="bi bi-volume-mute"></i>
+                </div>
+                <p *ngIf="contact.unread !== 0" class="unread-msgs-count">
+                    {{contact.unread}}
+                </p>
             </div>
         </div>
 

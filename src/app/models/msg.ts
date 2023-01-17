@@ -1,5 +1,6 @@
 export interface Msg {
     from: string,
     to: string,
-    msg: string
+    msg: string,
+    timestamp: number,
 }

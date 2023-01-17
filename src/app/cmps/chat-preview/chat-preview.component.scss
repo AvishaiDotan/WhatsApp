@@ -23,7 +23,7 @@
 
             .last-messege {
                 font-size: rem(14px);
-                color: #575757;
+                color: $clr0;
 
                 min-height: 20px;
                 max-width: 100px;
@@ -45,10 +45,44 @@
                 align-items: center;
                 gap: 10px;
 
-                .chat-additional-data {
-                    display: flex;
-                }
             }
+
+            
+        }
+
+        .unread-msgs-count {
+            border-radius: 2em;
+            background-color: $clrSecondary;
+            padding: 3px;
+            width: 12px;
+            height: 12px;
+            text-align: center;
+            font-size: 11px;
+
+            
+            color: $clr2;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            span {
+  
+            }
+        }
+
+        
+        .chat-additional-data {
+            display: flex;
+            gap: 5px;
+        }
+
+        .time {
+            font-size: 12px;
+        }
+
+        .contact-name {
+            font-family: HelveticaNeueMed;
         }
     }
 }

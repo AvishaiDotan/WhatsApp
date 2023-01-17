@@ -28,7 +28,7 @@ export class ContactsService {
             contacts = results
             contacts.forEach((contact: Contact) => {
                 contact.msgs = this.utilService.getMessages('user', contact.id.value)
-                contact.unread = this.utilService.getRandomIntInclusive(0, contact.msgs.length - 1)
+                contact.unread = (Math.random() > 0.7) ? this.utilService.getRandomIntInclusive(1, contact.msgs.length - 1) : 0
                 
                 const chance = Math.random()
                 if (chance <= 0.03) contact.state = ContactState.Pin
@@ -36,7 +36,9 @@ export class ContactsService {
                 else contact.state = ContactState.Regular
             })
 
+            contacts.sort((c1: Contact, c2: Contact) => c1.msgs[0].timestamp - c2.msgs[0].timestamp)
             contacts.sort((c1: Contact, c2: Contact) => (c2.state === 'pin') ? 1 : -1)
+
         }     
 
         this._contactsDB$.next(contacts)

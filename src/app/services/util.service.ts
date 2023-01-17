@@ -158,11 +158,28 @@ export class UtilService {
             const msg = {
                 from: destination.from,
                 to: destination.to,
-                msg: this.getMessage()
+                msg: this.getMessage(),
+                timestamp: this.getRandomTimestamp()
             }
             msgs.push(msg)
         }
         
+        msgs.sort((msg1, msg2) => msg1.timestamp - msg2.timestamp)
+
         return msgs
+    }
+
+    getRandomTimestamp() {
+        const now = Date.now()
+
+        let before
+        
+        if (Math.random() > 0.9) before = before = 1000 * 60 * 60 * 24 * 30 * 12 * (2 * Math.random()) * Math.random()
+        else if (Math.random() > 0.7) before = before = 1000 * 60 * 60 * 24 * 30 * 12 * Math.random()
+        else if (Math.random() > 0.5) before = before = 1000 * 60 * 60 * 24 * 30 * Math.random()
+        else if (Math.random() > 0.2) before = 1000 * 60 * 60 * 24 * Math.random()
+        else before = 1000 * 60 * 60 * Math.random()
+        
+        return +(now - before).toFixed(0)
     }
 }
