@@ -1,9 +1,9 @@
 <article class="chat-preview" 
-    (mousedown)="selectContact(contact.id.value)" 
-    (mouseup)="resetSelection()"
-    (touchstart)="selectContact(contact.id.value)"
-    (touchend)="resetSelection()"
-    (touchend)="resetSelection()"
+    (mousedown)="desktopSelectContact(contact.id.value)" 
+    (mouseup)="desktopResetSelection()"
+    (touchstart)="mobileSelectContact(contact.id.value)"
+    (touchend)="mobileResetSelection()"
+    (touchend)="mobileResetSelection()"
 >
     <div class="contact-img">
         <img [src]="contact.picture.thumbnail" alt="">

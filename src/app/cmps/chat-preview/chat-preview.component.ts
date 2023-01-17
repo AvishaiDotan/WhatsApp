@@ -11,8 +11,8 @@ import { ContactsService } from 'src/app/services/contacts.service';
 })
 export class ChatPreviewComponent implements OnInit, OnDestroy {
 
-    constructor(private contactsService: ContactsService){}
-    
+    constructor(private contactsService: ContactsService) { }
+
     @Input() contact!: Contact;
 
     selectedContactsSub!: Subscription
@@ -43,11 +43,14 @@ export class ChatPreviewComponent implements OnInit, OnDestroy {
         return { pipe: 'ss', additional: 'secondes ago' }
     }
 
-    resetSelection() {
+    desktopResetSelection() {
+        if (this.isMobile()) return
+        
         this.isHolding = false
     }
 
-    selectContact(contactId: string) {
+    desktopSelectContact(contactId: string) {
+        if (this.isMobile()) return
 
         if (this.isSelecting) {
             this.contactsService.selectContact(contactId)
@@ -64,8 +67,51 @@ export class ChatPreviewComponent implements OnInit, OnDestroy {
                 return
             }
 
-            this.contactsService.selectContact(contactId)    
-            clearTimeout(this.timeoutHandler) 
+            this.contactsService.selectContact(contactId)
+            clearTimeout(this.timeoutHandler)
         }, 1500)
     }
+
+    mobileResetSelection() {
+        this.isHolding = false
+    }
+
+    mobileSelectContact(contactId: string) {
+        if (this.isSelecting) {
+            this.contactsService.selectContact(contactId)
+            return
+        }
+
+        if (this.isHolding) return
+
+        this.isHolding = true
+        this.timeoutHandler = setTimeout(() => {
+            if (!this.isHolding) {
+                clearTimeout(this.timeoutHandler)
+                this.isHolding = false
+                return
+            }
+
+            this.contactsService.selectContact(contactId)
+            clearTimeout(this.timeoutHandler)
+        }, 1500)
+    }
+
+    isMobile() {
+        const toMatch = [
+            /Android/i,
+            /webOS/i,
+            /iPhone/i,
+            /iPad/i,
+            /iPod/i,
+            /BlackBerry/i,
+            /Windows Phone/i
+        ];
+        
+        return toMatch.some((toMatchItem) => {
+            return navigator.userAgent.match(toMatchItem);
+        });
+    }
+
+    
 }

@@ -11,12 +11,12 @@
 <ng-template class="actions-header" #selectHeaderActions>
     <header>
         <div class="left-actions">
-            <i class="bi bi-pin-angle-fill"></i>
-            <i class="bi bi-volume-mute-fill"></i>
+            <i (click)="toggleProp('pin')" class="bi bi-pin-angle-fill"></i>
+            <i (click)="toggleProp('mute')" class="bi bi-volume-mute-fill"></i>
         </div>
         <div class="right-actions">
-            <i class="bi bi-arrow-right"></i>'
             <span class="selected-count">{{ selectedCount }}</span>
+            <i (click)="unselectContacts()"class="bi bi-arrow-right"></i>
         </div>
     </header>
 </ng-template>

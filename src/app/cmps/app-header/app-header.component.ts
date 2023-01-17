@@ -24,5 +24,13 @@ export class AppHeaderComponent implements OnInit, OnDestroy {
         this.selectedContactsSub.unsubscribe()
     }
 
+    toggleProp(prop: string): void {
+        this.contactsService.toggleProp(prop)      
+    }
+
+    unselectContacts() {
+        this.contactsService.unselectContacts()
+    }
+
 
 }
