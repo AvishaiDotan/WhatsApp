@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { Subscription, timeInterval } from 'rxjs';
 import { Contact } from 'src/app/models';
@@ -11,7 +12,10 @@ import { ContactsService } from 'src/app/services/contacts.service';
 })
 export class ChatPreviewComponent implements OnInit, OnDestroy {
 
-    constructor(private contactsService: ContactsService) { }
+    constructor(
+        private contactsService: ContactsService,
+        private router: Router,
+        ) { }
 
     @Input() contact!: Contact;
 
@@ -20,6 +24,8 @@ export class ChatPreviewComponent implements OnInit, OnDestroy {
     timeoutHandler: any = null;
     isHolding: boolean = false;
     isSelecting: boolean = false;
+
+    firstClickTime: number = 0;
 
 
     ngOnInit(): void {
@@ -45,7 +51,7 @@ export class ChatPreviewComponent implements OnInit, OnDestroy {
 
     desktopResetSelection() {
         if (this.isMobile()) return
-        
+
         this.isHolding = false
     }
 
@@ -72,29 +78,58 @@ export class ChatPreviewComponent implements OnInit, OnDestroy {
         }, 1500)
     }
 
+    // mobileResetSelection() {
+    //     this.isHolding = false
+    // }
+
+    // mobileSelectContact(contactId: string) {
+    //     if (this.isSelecting) {
+    //         this.contactsService.selectContact(contactId)
+    //         return
+    //     }
+
+    //     if (this.isHolding) return
+
+    //     this.isHolding = true
+    //     this.timeoutHandler = setTimeout(() => {
+    //         if (!this.isHolding) {
+    //             clearTimeout(this.timeoutHandler)
+    //             this.isHolding = false
+    //             return
+    //         }
+
+    //         this.contactsService.selectContact(contactId)
+    //         clearTimeout(this.timeoutHandler)
+    //     }, 1500)
+    // }
+
     mobileResetSelection() {
+
         this.isHolding = false
+
+        if (!this.isSelecting) console.log('hey');
+        this.router.navigate(['chats', 'mobile'])
     }
 
     mobileSelectContact(contactId: string) {
+
         if (this.isSelecting) {
             this.contactsService.selectContact(contactId)
             return
         }
 
-        if (this.isHolding) return
-
+        this.firstClickTime = Date.now()
         this.isHolding = true
+
         this.timeoutHandler = setTimeout(() => {
             if (!this.isHolding) {
                 clearTimeout(this.timeoutHandler)
-                this.isHolding = false
                 return
             }
 
             this.contactsService.selectContact(contactId)
             clearTimeout(this.timeoutHandler)
-        }, 1500)
+        }, 1200)
     }
 
     isMobile() {
@@ -107,11 +142,11 @@ export class ChatPreviewComponent implements OnInit, OnDestroy {
             /BlackBerry/i,
             /Windows Phone/i
         ];
-        
+
         return toMatch.some((toMatchItem) => {
             return navigator.userAgent.match(toMatchItem);
         });
     }
 
-    
+
 }

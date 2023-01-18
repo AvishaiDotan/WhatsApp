@@ -9,6 +9,10 @@ const routes: Routes = [
         component: ChatListComponent,
     },
     {
+        path: 'chats/:id',
+        component: AppHeaderComponent,
+    },
+    {
         path: 'status',
         component: AppHeaderComponent,
     },
