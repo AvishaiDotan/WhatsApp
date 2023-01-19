@@ -49,66 +49,23 @@ export class ChatPreviewComponent implements OnInit, OnDestroy {
         return { pipe: 'ss', additional: 'secondes ago' }
     }
 
-    desktopResetSelection() {
+    desktopResetSelection(contactId: string) {
         if (this.isMobile()) return
 
-        this.isHolding = false
+        this.mobileResetSelection(contactId)
     }
 
     desktopSelectContact(contactId: string) {
         if (this.isMobile()) return
 
-        if (this.isSelecting) {
-            this.contactsService.selectContact(contactId)
-            return
-        }
-
-        if (this.isHolding) return
-
-        this.isHolding = true
-        this.timeoutHandler = setTimeout(() => {
-            if (!this.isHolding) {
-                clearTimeout(this.timeoutHandler)
-                this.isHolding = false
-                return
-            }
-
-            this.contactsService.selectContact(contactId)
-            clearTimeout(this.timeoutHandler)
-        }, 1500)
+        this.mobileSelectContact(contactId)
     }
 
-    // mobileResetSelection() {
-    //     this.isHolding = false
-    // }
-
-    // mobileSelectContact(contactId: string) {
-    //     if (this.isSelecting) {
-    //         this.contactsService.selectContact(contactId)
-    //         return
-    //     }
-
-    //     if (this.isHolding) return
-
-    //     this.isHolding = true
-    //     this.timeoutHandler = setTimeout(() => {
-    //         if (!this.isHolding) {
-    //             clearTimeout(this.timeoutHandler)
-    //             this.isHolding = false
-    //             return
-    //         }
-
-    //         this.contactsService.selectContact(contactId)
-    //         clearTimeout(this.timeoutHandler)
-    //     }, 1500)
-    // }
-
-    mobileResetSelection() {
+    mobileResetSelection(contactId: string) {
 
         this.isHolding = false
 
-        if (!this.isSelecting) console.log('hey');
-        this.router.navigate(['chats', 'mobile'])
+        if (!this.isSelecting) this.router.navigate(['contact/chat', contactId])
     }
 
     mobileSelectContact(contactId: string) {

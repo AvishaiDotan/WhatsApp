@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { UtilService } from './util.service';
 
-import { BehaviorSubject, lastValueFrom } from 'rxjs';
+import { BehaviorSubject, lastValueFrom, of } from 'rxjs';
 import { Contact } from '../models';
 import { ContactState } from '../enums';
 
@@ -47,6 +47,13 @@ export class ContactsService {
 
         this._contactsDB$.next(contacts)
         this.utilService.saveToStorage(this.contacts_key, contacts)
+    }
+
+    getContactById(contactId: string): any {
+        const contacts = this._contactsDB$.getValue()
+        const contact = contacts.find(({id}) => id === contactId)
+
+        return (contact) ? of(contact) : of()
     }
 
     reloadContacts() {

@@ -9,6 +9,10 @@ import { AppHeaderComponent } from './cmps/app-header/app-header.component';
 import { AppTabsComponent } from './cmps/app-tabs/app-tabs.component';
 import { ChatListComponent } from './views/chat-list/chat-list.component';
 import { ChatPreviewComponent } from './cmps/chat-preview/chat-preview.component';
+import { MainAppComponent } from './views/main-app/main-app.component';
+import { MainContactComponent } from './views/main-contact/main-contact.component';
+import { ContactChatComponent } from './cmps/contact-chat/contact-chat.component';
+import { ContactHeaderComponent } from './cmps/contact-header/contact-header.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +20,11 @@ import { ChatPreviewComponent } from './cmps/chat-preview/chat-preview.component
     AppHeaderComponent,
     AppTabsComponent,
     ChatListComponent,
-    ChatPreviewComponent
+    ChatPreviewComponent,
+    MainAppComponent,
+    MainContactComponent,
+    ContactChatComponent,
+    ContactHeaderComponent,
   ],
   imports: [
     BrowserModule,
