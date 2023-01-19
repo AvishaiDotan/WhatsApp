@@ -49,10 +49,10 @@ export class ContactsService {
         this.utilService.saveToStorage(this.contacts_key, contacts)
     }
 
-    getContactById(contactId: string): any {
+    getContactById(contactId: string): any {;
         const contacts = this._contactsDB$.getValue()
-        const contact = contacts.find(({id}) => id === contactId)
-
+        const contact = contacts.find(({ id: {value} }) => value === contactId)
+        
         return (contact) ? of(contact) : of()
     }
 

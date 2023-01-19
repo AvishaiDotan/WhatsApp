@@ -8,19 +8,19 @@ import { Subscription } from 'rxjs';
     templateUrl: './main-contact.component.html',
     styleUrls: ['./main-contact.component.scss']
 })
-export class MainContactComponent implements OnInit {
+export class MainContactComponent implements OnInit, OnDestroy {
 
     constructor(private activatedRoute: ActivatedRoute) {}
 
     contactSub!: Subscription
-
     contact!: Contact
 
-
     ngOnInit(): void {
-        this.contactSub = this.activatedRoute.data.subscribe(contact => this.contact = contact['contact']);
-        console.log(this.contact);
-        
+        this.contactSub = this.activatedRoute.data.subscribe(({contact}) => this.contact = contact);
+    }
+
+    ngOnDestroy(): void {
+        this.contactSub.unsubscribe();
     }
 
 }

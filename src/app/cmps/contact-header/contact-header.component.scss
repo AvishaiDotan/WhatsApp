@@ -1,0 +1,39 @@
+@import '../../../styles.scss';
+
+.contact-header {
+        min-height: 61px;
+        box-sizing: border-box;
+        background-color: $clrPrimary;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        padding-inline: 10px;
+
+        .right {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+
+            .contact-details {
+                h3 {
+                    font-family: HelveticaNeueMed;
+                }
+                p {
+                    font-size: rem(12px);
+                }
+            }
+
+            .back {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 8px;
+
+                img {
+                    border-radius: 50%;
+                }
+            }
+        }
+}

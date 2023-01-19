@@ -13,6 +13,9 @@ import { MainAppComponent } from './views/main-app/main-app.component';
 import { MainContactComponent } from './views/main-contact/main-contact.component';
 import { ContactChatComponent } from './cmps/contact-chat/contact-chat.component';
 import { ContactHeaderComponent } from './cmps/contact-header/contact-header.component';
+import {FormsModule} from '@angular/forms';
+
+import {InputTextModule} from 'primeng/inputtext';
 
 @NgModule({
   declarations: [
@@ -30,6 +33,8 @@ import { ContactHeaderComponent } from './cmps/contact-header/contact-header.com
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    FormsModule,
+    InputTextModule
   ],
   providers: [],
   bootstrap: [AppComponent]
