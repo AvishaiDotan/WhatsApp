@@ -11,11 +11,11 @@ import { ChatListComponent } from './views/chat-list/chat-list.component';
 import { ChatPreviewComponent } from './cmps/chat-preview/chat-preview.component';
 import { MainAppComponent } from './views/main-app/main-app.component';
 import { MainContactComponent } from './views/main-contact/main-contact.component';
-import { ContactChatComponent } from './cmps/contact-chat/contact-chat.component';
 import { ContactHeaderComponent } from './cmps/contact-header/contact-header.component';
 import {FormsModule} from '@angular/forms';
 
 import {InputTextModule} from 'primeng/inputtext';
+import { ChatsListComponent } from './cmps/chats-list/chats-list.component';
 
 @NgModule({
   declarations: [
@@ -26,8 +26,8 @@ import {InputTextModule} from 'primeng/inputtext';
     ChatPreviewComponent,
     MainAppComponent,
     MainContactComponent,
-    ContactChatComponent,
     ContactHeaderComponent,
+    ChatsListComponent,
   ],
   imports: [
     BrowserModule,

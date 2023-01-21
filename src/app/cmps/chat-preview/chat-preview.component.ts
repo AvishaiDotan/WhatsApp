@@ -65,9 +65,7 @@ export class ChatPreviewComponent implements OnInit, OnDestroy {
 
         this.isHolding = false
 
-        if (!this.isSelecting) this.router.navigate(['contact', 'chat', contactId])
-        
-        
+        if (!this.isSelecting) this.router.navigate(['contact', 'chat', contactId]) 
     }
 
     mobileSelectContact(contactId: string) {

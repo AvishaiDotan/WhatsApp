@@ -3,11 +3,7 @@
         <label for="search">
             <span class="p-input-icon-left">
                 <i class="pi pi-search"></i>
-                <i class="pi pi-times"></i>
-                <i class="pi pi-check"></i>
-                <i class="pi pi-angle-double-down"></i>
-                
-                <input type="text" pInputText placeholder="Search" [(ngModel)]="searchVal" />
+                <input class="search-input" type="text" pInputText placeholder="Search" [(ngModel)]="searchVal" />
             </span>
         </label>
     </section>
@@ -16,7 +12,7 @@
             <h3>{{ (contact.id.value.includes('E')) ? contact.phone : contact.name.first + ' ' +contact.name.last}}</h3>
             <p>connected</p>
         </div>
-        <div class="back">
+        <div class="back" (click)="goBack()">
             <img [src]="contact.picture.thumbnail">
             <i class="bi bi-arrow-right"></i>
         </div>

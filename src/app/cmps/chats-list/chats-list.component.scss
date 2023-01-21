@@ -1,0 +1,53 @@
+@import '../../../styles.scss';
+
+:host {
+    background-image: url('../../../assets/img/peakpx.jpg');
+    background-position: top;
+    background-origin: border-box;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: block;
+    min-height: calc(100vh - 61px);
+}
+
+.chats-list {
+    >*:not(:first-child) {
+        margin-block-start: 5px;
+        margin-inline: 5px;
+    }
+
+    > *:first-child{
+        padding-block-start: 25px;
+        margin-inline: 5px;
+    }
+
+    > *:last-child {
+        padding-block-end: 5px;
+    }
+
+    .me {
+        text-align: right;
+        padding: 5px;
+        background-color: $clrSecondaryLight;
+        color: $clr-2;
+        width: max-content;
+        border-radius: 5px;
+        margin-inline-start: auto;
+    }
+
+    .contact,
+    .day-separator {
+        text-align: left;
+        padding: 5px;
+        background-color: $clr2;
+        color: $clr-2;
+        width: max-content;
+        border-radius: 5px;
+    }
+
+    .day-separator {
+        margin-block: 15px;
+        text-align: center;
+        margin-inline: auto auto;
+    }
+}

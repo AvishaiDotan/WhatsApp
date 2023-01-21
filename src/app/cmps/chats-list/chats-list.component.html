@@ -1,0 +1,11 @@
+<section class="chats-list">
+    <article *ngFor="let msg of contact.msgs; index as i">
+        <p [ngClass]="{me: msg.from === 'user', contact: msg.from !== 'user'}">
+            {{ msg.msg }}
+        </p>
+        <article class="day-separator" *ngIf="isPassedDay(msg.timestamp, i)">
+            {{msg.timestamp | date:'dd MMM'}}
+        </article>
+    </article>
+
+</section>
