@@ -12,6 +12,7 @@ import { ContactState } from '../enums';
 export class ContactsService {
 
     contacts_key = 'contactsDB';
+    randomMsgInterval: any = ''
 
     constructor(
         private utilService: UtilService,
@@ -26,13 +27,15 @@ export class ContactsService {
     private _currContactChatDB$ = new BehaviorSubject<Contact | null>(null);
     public currContactChatDB$ = this._currContactChatDB$.asObservable();
 
-
+    
+    
 
     async query() {
+        if (!this.randomMsgInterval) this.randomMsgInterval = setInterval(this.addRandomMsg, 2000, this)
         let contacts = this.utilService.loadFromStorage(this.contacts_key)
 
         if (!contacts) {
-            let { results }: any = await lastValueFrom(this.http.get('https://randomuser.me/api/?inc=gender,picture,phone,id,name&results=100'))
+            let { results }: any = await lastValueFrom(this.http.get('https://randomuser.me/api/?inc=gender,picture,phone,id,name&results=5'))
             contacts = results
             contacts.forEach((contact: Contact) => {
                 contact.msgs = this.utilService.getMessages('user', contact.id.value)
@@ -54,11 +57,30 @@ export class ContactsService {
         this.utilService.saveToStorage(this.contacts_key, contacts)
     }
 
+    addRandomMsg(currThis: any) {
+        const contacts: Contact[] = currThis._contactsDB$.getValue()
+        if (!contacts) return
+
+        const idx = currThis.utilService.getRandomIntInclusive(0, contacts.length - 1)
+
+        if (idx < 0) return
+
+        const {id: {value}} = contacts[idx]
+
+        const msg = {
+            from: value,
+            to: 'user',
+            timestamp: Date.now(),
+            msg: currThis.utilService.getMessage()
+        }
+        contacts[idx].unread++
+
+        currThis.addMsg(value, msg)
+    }
+
     getContactById(contactId: string) {;
         const contacts = this._contactsDB$.getValue()
         const contact = contacts.find(({ id: {value} }) => value === contactId)
-        console.log(contact, 'contact');
-        console.log(contacts, 'contacts');
         
         if (!contact) return this._currContactChatDB$.next(null)
 
