@@ -12,31 +12,38 @@ import { ChatPreviewComponent } from './cmps/chat-preview/chat-preview.component
 import { MainAppComponent } from './views/main-app/main-app.component';
 import { MainContactComponent } from './views/main-contact/main-contact.component';
 import { ContactHeaderComponent } from './cmps/contact-header/contact-header.component';
-import {FormsModule} from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 
-import {InputTextModule} from 'primeng/inputtext';
+import { InputTextModule } from 'primeng/inputtext';
 import { ChatsListComponent } from './cmps/chats-list/chats-list.component';
+import { AddMsgComponent } from './cmps/add-msg/add-msg.component';
+import { FilterMsgPipe } from './pipes/filter-msg.pipe';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    AppHeaderComponent,
-    AppTabsComponent,
-    ChatListComponent,
-    ChatPreviewComponent,
-    MainAppComponent,
-    MainContactComponent,
-    ContactHeaderComponent,
-    ChatsListComponent,
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    FormsModule,
-    InputTextModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        AppHeaderComponent,
+        AppTabsComponent,
+        ChatListComponent,
+        ChatPreviewComponent,
+        MainAppComponent,
+        MainContactComponent,
+        ContactHeaderComponent,
+        ChatsListComponent,
+        AddMsgComponent,
+        FilterMsgPipe,
+    ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        FormsModule,
+        InputTextModule
+    ],
+    providers: [],
+    bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+
+
+}

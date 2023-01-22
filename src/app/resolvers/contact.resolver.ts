@@ -11,12 +11,12 @@ import { ContactsService } from '../services/contacts.service';
 @Injectable({
     providedIn: 'root'
 })
-export class ContactResolver implements Resolve<Contact> {
+export class ContactResolver implements Resolve<void> {
 
     constructor(private contactService: ContactsService) { }
 
-    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot):  Observable<Contact>  {     
+    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): void  {     
         const contactId: any = route.params['id']
-        return this.contactService.getContactById(contactId)
+        this.contactService.getContactById(contactId)    
     }
 }

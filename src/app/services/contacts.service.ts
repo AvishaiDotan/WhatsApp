@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { UtilService } from './util.service';
 
 import { BehaviorSubject, lastValueFrom, of } from 'rxjs';
-import { Contact } from '../models';
+import { Contact, Msg } from '../models';
 import { ContactState } from '../enums';
 
 @Injectable({
@@ -22,6 +22,11 @@ export class ContactsService {
 
     private _selectedContactsDB$ = new BehaviorSubject<string[]>([]);
     public selectedContactsDB$ = this._selectedContactsDB$.asObservable();
+
+    private _currContactChatDB$ = new BehaviorSubject<Contact | null>(null);
+    public currContactChatDB$ = this._currContactChatDB$.asObservable();
+
+
 
     async query() {
         let contacts = this.utilService.loadFromStorage(this.contacts_key)
@@ -49,11 +54,15 @@ export class ContactsService {
         this.utilService.saveToStorage(this.contacts_key, contacts)
     }
 
-    getContactById(contactId: string): any {;
+    getContactById(contactId: string) {;
         const contacts = this._contactsDB$.getValue()
         const contact = contacts.find(({ id: {value} }) => value === contactId)
+        console.log(contact, 'contact');
+        console.log(contacts, 'contacts');
         
-        return (contact) ? of(contact) : of()
+        if (!contact) return this._currContactChatDB$.next(null)
+
+        this._currContactChatDB$.next(contact)
     }
 
     reloadContacts() {
@@ -102,5 +111,17 @@ export class ContactsService {
 
     unselectContacts() {
         this._selectedContactsDB$.next([])
+    }
+
+    addMsg(contactId: string, msg: Msg): void {
+        const contacts: Contact[] = this._contactsDB$.getValue()
+        const contact = contacts.find(({ id: {value} }) => value === contactId)
+
+        if (!contact) return      
+        contact.msgs.push(msg)
+
+        this._contactsDB$.next(contacts as never[])
+        this.utilService.saveToStorage(this.contacts_key, contacts)  
+        this._currContactChatDB$.next(contact)  
     }
 }

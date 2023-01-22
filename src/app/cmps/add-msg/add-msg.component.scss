@@ -1,0 +1,33 @@
+@import '../../../styles.scss';
+
+.add-msg {
+
+
+    .msg-wrapper {
+        text-align: center;
+        position: fixed;
+        top: calc(100vh - 57px);
+        background-color: $clrSecondaryLight;
+        width: 100%;
+
+        .p-input-icon-right {
+            width: 95%;
+            padding-block: 5px;
+
+            input {
+                width: 100%;
+
+                &:enabled:focus {
+                    outline: 0 none;
+                    outline-offset: 0;
+                    box-shadow: 0 0 0 0.2rem $clr2;
+                    border-color: $clrPrimary;
+                }
+            }
+
+
+        }
+    }
+
+
+}

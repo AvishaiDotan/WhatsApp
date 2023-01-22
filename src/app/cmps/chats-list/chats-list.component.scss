@@ -1,13 +1,7 @@
 @import '../../../styles.scss';
 
 :host {
-    background-image: url('../../../assets/img/peakpx.jpg');
-    background-position: top;
-    background-origin: border-box;
-    background-repeat: no-repeat;
-    background-size: cover;
-    display: block;
-    min-height: calc(100vh - 61px);
+
 }
 
 .chats-list {
@@ -22,7 +16,7 @@
     }
 
     > *:last-child {
-        padding-block-end: 5px;
+        padding-block-end: 61px;
     }
 
     .me {

@@ -1,2 +1,4 @@
-<contact-header [contact]="contact"></contact-header>
-<chats-list [contact]="contact"></chats-list>
+<contact-header [contact]="contact" (onFilter)="setFilter($event)" ></contact-header>
+<chats-list [contact]="contact" [filter]="filter"></chats-list>
+<add-msg [contactId]="contact.id.value"></add-msg>
+

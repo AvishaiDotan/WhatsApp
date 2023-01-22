@@ -8,7 +8,8 @@ import { Contact } from 'src/app/models';
 })
 export class ChatsListComponent {
     @Input() contact!: Contact
-
+    @Input() filter!: string
+    
     isPassedDay(timestamp: number, idx: number): boolean {
         const { msgs } = this.contact
         const day = 1000 * 60 * 60 * 24
