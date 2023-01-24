@@ -27,5 +27,6 @@ export class AddMsgComponent {
         this.contactService.addMsg(this.contactId, msg)
 
         this.msgTxt = ''
+        window.document.querySelector('.chat:last-child')?.scrollIntoView() 
     }
 }

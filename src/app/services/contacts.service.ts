@@ -31,11 +31,11 @@ export class ContactsService {
     
 
     async query() {
-        if (!this.randomMsgInterval) this.randomMsgInterval = setInterval(this.addRandomMsg, 2000, this)
+        if (!this.randomMsgInterval) this.randomMsgInterval = setInterval(this.addRandomMsg, 30000, this)
         let contacts = this.utilService.loadFromStorage(this.contacts_key)
 
         if (!contacts) {
-            let { results }: any = await lastValueFrom(this.http.get('https://randomuser.me/api/?inc=gender,picture,phone,id,name&results=5'))
+            let { results }: any = await lastValueFrom(this.http.get('https://randomuser.me/api/?inc=gender,picture,phone,id,name&results=150'))
             contacts = results
             contacts.forEach((contact: Contact) => {
                 contact.msgs = this.utilService.getMessages('user', contact.id.value)
@@ -45,6 +45,8 @@ export class ContactsService {
                 if (chance <= 0.03) contact.state = ContactState.Pin
                 else if (chance <= 0.15) contact.state = ContactState.Mute
                 else contact.state = ContactState.Regular
+
+                contact.moto = this.utilService.getMoto()
 
                 contact.id.value = (contact.id.value) ? contact.id.value : this.utilService.makeId()
             })
@@ -73,18 +75,30 @@ export class ContactsService {
             timestamp: Date.now(),
             msg: currThis.utilService.getMessage()
         }
-        contacts[idx].unread++
 
-        currThis.addMsg(value, msg)
+        contacts[idx].unread++
+        contacts[idx].msgs.push(msg)
+
+        currThis._contactsDB$.next(contacts as never[])
+        currThis.utilService.saveToStorage(this.contacts_key, contacts)
+
+        // currThis.addMsg(value, msg)
     }
 
-    getContactById(contactId: string) {;
+    setSelectedContactById(contactId: string) {
         const contacts = this._contactsDB$.getValue()
         const contact = contacts.find(({ id: {value} }) => value === contactId)
-        
-        if (!contact) return this._currContactChatDB$.next(null)
 
+        if (!contact) {
+            this._currContactChatDB$.next(null)
+            return 0
+        }
+
+        const {unread} = contact
+        this.resetUnreadCount(contact)
         this._currContactChatDB$.next(contact)
+
+        return unread
     }
 
     reloadContacts() {
@@ -145,5 +159,19 @@ export class ContactsService {
         this._contactsDB$.next(contacts as never[])
         this.utilService.saveToStorage(this.contacts_key, contacts)  
         this._currContactChatDB$.next(contact)  
+    }
+
+    resetUnreadCount(contact: Contact) {
+        contact.unread = 0
+        this.updateContact(contact)
+    }
+
+    updateContact(contact: Contact): void {
+        const contacts: Contact[] = this._contactsDB$.getValue()
+        const contactIdx = contacts.findIndex(({ id: {value} }) => value === contact.id.value)
+
+        contacts[contactIdx] = contact
+        this._contactsDB$.next(contacts as never[])
+        this.utilService.saveToStorage(this.contacts_key, contacts)   
     }
 }

@@ -1,0 +1,27 @@
+<header class="contact-details-header">
+    <i class="pi pi-arrow-left"></i>
+</header>
+
+<section class="contact-details-data">
+    <img [src]="contact?.picture?.large" alt="">
+    <h2 class="name">
+        {{contact?.name?.first + ' ' + contact?.name?.last}}
+    </h2>
+    <p class="phone-number-1">
+        {{contact?.phone}}
+    </p>
+</section>
+
+<div class="moto-wrapper">
+    <p class="moto">
+        {{contact?.moto}}
+    </p>
+</div>
+
+<section class="call-section">
+    <p class="phone-number-2">
+        {{contact?.phone}}
+    </p>
+    <i class="pi pi-phone"></i>
+</section>
+

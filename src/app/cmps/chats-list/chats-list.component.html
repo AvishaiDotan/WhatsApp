@@ -1,5 +1,9 @@
 <section class="chats-list" #scrollBottom>
-    <article *ngFor="let msg of contact.msgs | filterMsg:filter; index as i">
+    <article 
+        class="chat"
+        *ngFor="let msg of contact.msgs | filterMsg:filter; index as i"
+        [ngClass]="{scrollTo: i === (contact.msgs.length - 1 - unread)}"
+    >
         <p [ngClass]="{me: msg.from === 'user', contact: msg.from !== 'user'}">
             {{ msg.msg }}
         </p>
@@ -7,5 +11,4 @@
             {{msg.timestamp | date:'dd MMM'}}
         </article>
     </article>
-
 </section>

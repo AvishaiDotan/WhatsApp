@@ -8,8 +8,8 @@
         </label>
     </section>
     <section class="right">
-        <div class="contact-details">
-            <h3>{{ (contact.id.value.includes('E')) ? contact.phone : contact.name.first + ' ' +contact.name.last}}</h3>
+        <div class="contact-details" (click)="goDetails()">
+            <h3>{{ (contact.id.value.includes('z')) ? contact.phone : contact.name.first + ' ' +contact.name.last}}</h3>
             <p>Connected</p>
         </div>
         <div class="back" (click)="goBack()">

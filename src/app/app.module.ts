@@ -18,6 +18,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ChatsListComponent } from './cmps/chats-list/chats-list.component';
 import { AddMsgComponent } from './cmps/add-msg/add-msg.component';
 import { FilterMsgPipe } from './pipes/filter-msg.pipe';
+import { ContactDetailsComponent } from './views/contact-details/contact-details.component';
 
 @NgModule({
     declarations: [
@@ -32,6 +33,7 @@ import { FilterMsgPipe } from './pipes/filter-msg.pipe';
         ChatsListComponent,
         AddMsgComponent,
         FilterMsgPipe,
+        ContactDetailsComponent,
     ],
     imports: [
         BrowserModule,

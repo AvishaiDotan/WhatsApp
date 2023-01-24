@@ -21,6 +21,10 @@ export class ContactHeaderComponent {
         this.router.navigateByUrl('')
     }
 
+    goDetails() {
+        this.router.navigate(['contact', 'details', this.contact.id.value])
+    }
+
     setFilter(filter: string) {
         this.onFilter.emit(filter)        
     }

@@ -51,20 +51,16 @@ export class ChatPreviewComponent implements OnInit, OnDestroy {
 
     desktopResetSelection(contactId: string) {
         if (this.isMobile()) return
-
         this.mobileResetSelection(contactId)
     }
 
     desktopSelectContact(contactId: string) {
         if (this.isMobile()) return
-
         this.mobileSelectContact(contactId)
     }
 
     mobileResetSelection(contactId: string) {
-
         this.isHolding = false
-
         if (!this.isSelecting) this.router.navigate(['contact', 'chat', contactId]) 
     }
 

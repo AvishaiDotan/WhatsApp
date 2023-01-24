@@ -5,6 +5,7 @@ import { ChatListComponent } from './views/chat-list/chat-list.component';
 import { MainAppComponent } from './views/main-app/main-app.component';
 import { MainContactComponent } from './views/main-contact/main-contact.component';
 import { ContactResolver } from './resolvers/contact.resolver';
+import { ContactDetailsComponent } from './views/contact-details/contact-details.component';
 
 const routes: Routes = [
     {
@@ -28,6 +29,11 @@ const routes: Routes = [
     {
         path: 'contact/chat/:id',
         component: MainContactComponent,
+        resolve: {contact: ContactResolver},
+    },
+    {
+        path: 'contact/details/:id',
+        component: ContactDetailsComponent,
         resolve: {contact: ContactResolver},
     },
     {

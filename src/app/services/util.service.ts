@@ -152,9 +152,9 @@ export class UtilService {
     getMessages(from: string, to: string): Msg[] {
         const msgs = []
         const msgsCount = this.getRandomIntInclusive(1, 20)
-        
+
         for (let i = 0; i < msgsCount; i++) {
-            const destination = (Math.random() > Math.random()) ? {from, to} : {from: to, to: from}
+            const destination = (Math.random() > Math.random()) ? { from, to } : { from: to, to: from }
             const msg = {
                 from: destination.from,
                 to: destination.to,
@@ -163,7 +163,7 @@ export class UtilService {
             }
             msgs.push(msg)
         }
-        
+
         msgs.sort((msg1, msg2) => msg1.timestamp - msg2.timestamp)
 
         return msgs
@@ -173,13 +173,43 @@ export class UtilService {
         const now = Date.now()
 
         let before
-        
+
         if (Math.random() > 0.9) before = before = 1000 * 60 * 60 * 24 * 30 * 12 * (2 * Math.random()) * Math.random()
         else if (Math.random() > 0.7) before = before = 1000 * 60 * 60 * 24 * 30 * 12 * Math.random()
         else if (Math.random() > 0.5) before = before = 1000 * 60 * 60 * 24 * 30 * Math.random()
         else if (Math.random() > 0.2) before = 1000 * 60 * 60 * 24 * Math.random()
         else before = 1000 * 60 * 60 * Math.random()
-        
+
         return +(now - before).toFixed(0)
+    }
+
+    getMoto() {
+        const motos = ["Love with all your heart, live with all your soul.",
+            "Tech is the future, embrace it and make it yours.",
+            "Raise kids to be kind, watch them change the world.",
+            "Work hard, play harder, live the dream.",
+            "Culture is the foundation, travel to build the skyscraper.",
+            "Believe in yourself, live your truth.",
+            "Love is the ultimate adventure, take the ride.",
+            "Tech is not just a tool, it's a way of life.",
+            "Kids are the future, teach them well.",
+            "Work to live, don't live to work.",
+            "Culture is the key to understanding, embrace diversity.",
+            "Believe in the power of dreams, make them a reality.",
+            "Love is not just a feeling, it's a choice.",
+            "Tech is not just a trend, it's the future.",
+            "Kids are not just a responsibility, they're a blessing.",
+            "Work for more than a paycheck, work for a purpose.",
+            "Culture is not just a concept, it's a way of life.",
+            "Believe in the power of change, be the change.",
+            "Love is not just a word, it's an action.",
+            "Tech is not just a gadget, it's a lifestyle.",
+            "Kids are not just a burden, they're a joy.",
+            "Work is not just a job, it's a passion.",
+            "Culture is not just a tradition, it's a celebration.",
+            "Believe in the power of love, live it every day."
+        ]
+
+        return motos[this.getRandomIntInclusive(0, motos.length - 1)]
     }
 }

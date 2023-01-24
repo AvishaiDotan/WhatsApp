@@ -20,5 +20,6 @@ export interface Contact {
     "msgs": Msg[]
     "unread": number
     state: ContactState
+    moto: string
 
 }

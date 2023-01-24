@@ -1,4 +1,5 @@
-import { AfterViewChecked, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Contact } from 'src/app/models';
 
 @Component({
@@ -6,25 +7,30 @@ import { Contact } from 'src/app/models';
     templateUrl: './chats-list.component.html',
     styleUrls: ['./chats-list.component.scss']
 })
-export class ChatsListComponent implements OnInit, AfterViewChecked {
+export class ChatsListComponent implements OnInit, AfterViewInit {
 
+
+    constructor(private route: ActivatedRoute) {}
 
     @Input() contact!: Contact
     @Input() filter!: string
-    @ViewChild('scrollBottom') private scrollBottom!: ElementRef;
+
+    unread: number = 0
 
     ngOnInit() {
-        this.scrollToBottom();
+        this.route.data.subscribe(({contact}) => {           
+            this.unread = contact           
+        })
     }
 
-    ngAfterViewChecked() {
-        this.scrollToBottom();
+    ngAfterViewInit(): void {
+        this.scrollToBottom()
     }
 
     scrollToBottom(): void {
         try {
-            this.scrollBottom.nativeElement.scrollTo(0, this.scrollBottom.nativeElement.clientHeight + 120)
-            // this.scrollBottom.nativeElement.scrollTop = this.scrollBottom.nativeElement.scrollHeight;    
+            // @ts-ignore
+            window.document.querySelector('.scrollTo')?.scrollIntoView()       
         } catch (err) { }
     }
 
