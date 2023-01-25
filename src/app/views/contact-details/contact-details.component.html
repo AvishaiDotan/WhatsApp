@@ -19,9 +19,34 @@
 </div>
 
 <section class="call-section">
-    <p class="phone-number-2">
-        {{contact?.phone}}
-    </p>
+    <div class="details">
+        <p>Other Mobiles</p>
+        <p class="phone-number-2">
+            {{contact?.phone}}
+        </p>
+        <p>Mobile</p>
+    </div>
     <i class="pi pi-phone"></i>
 </section>
 
+<section class="notification">
+    <div class="first">
+        <i class="bi bi-bell-fill"></i>
+        <p>Mute Notifications</p>
+    </div>
+    <label class="switch">
+        <input type="checkbox">
+        <span class="slider round"></span>
+    </label>
+</section>
+
+<section class="block-actions">
+    <div class="block">
+        <i class="pi pi-minus-circle"></i>
+        <p>Block {{contact?.name?.first + ' ' + contact?.name?.last}}</p>
+    </div>
+    <div class="delete">
+        <i class="bi bi-trash3"></i>
+        <p>Delete conversation with {{contact?.name?.first + ' ' + contact?.name?.last}}</p>
+    </div>
+</section>

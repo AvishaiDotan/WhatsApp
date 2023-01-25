@@ -1,0 +1,196 @@
+@import '../../../styles.scss';
+
+:host {
+    background-color: #ebebeb;
+    min-height: 100vh;
+    display: block;
+
+
+
+    >*:not(:first-child) {
+        background-color: $clr2;
+        margin-block-end: 20px;
+        box-shadow: 0px 1.9px 2px 0px #bebebe;
+        min-height: 30px;
+    }
+
+    >*:first-child {
+        background-color: $clr2;
+        min-height: 30px;
+    }
+
+    .contact-details-header {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        padding-inline: 10px;
+
+        .pi-arrow-left {
+            color: $clr0;
+        }
+
+    }
+
+    .contact-details-data {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+
+        >* {
+            transform: translateY(-20px);
+            margin-block-end: 10px;
+        }
+
+        img {
+            border-radius: 50%;
+        }
+
+        h2 {
+            font-family: HelveticaNeueMed;
+        }
+
+        p {
+            font-size: rem(12px);
+            color: $clr0;
+        }
+    }
+
+    .moto-wrapper,
+    .call-section {
+        padding-block: 10px;
+        padding-inline: 10px;
+    }
+
+    .call-section {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        p {
+            color: $clr0;
+        }
+
+        p:first-child {
+            margin-block-end: 8px;
+        }
+
+        p:nth-child(2) {
+            color: $clr-2;
+            font-family: HelveticaNeueMed;
+            margin-block-end: 4px;
+        }
+
+        i {
+            padding-inline-end: 8px;
+            &::before {
+                color: $clrSecondary;
+            }
+        }
+    }
+
+    .block-actions {
+        color: rgb(148, 61, 61);
+        padding-block: 10px;
+        padding-inline: 10px;
+
+
+        >* {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            font-family: HelveticaNeueMed;
+            gap: 20px;
+
+            &:first-child {
+                margin-block-end: 20px;
+            }
+        }
+    }
+
+    .notification {
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-inline: 10px;
+        
+        .first {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            gap: 20px;
+        }
+
+        /* The switch - the box around the slider */
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 30px;
+            height: 17px;
+        }
+
+        /* Hide default HTML checkbox */
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        /* The slider */
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 13px;
+            width: 13px;
+            left: 2px;
+            bottom: 2px;
+            background-color: white;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+        input:checked+.slider {
+            background-color: $clrSecondary;
+        }
+
+        input:focus+.slider {
+            box-shadow: 0 0 1px $clrSecondaryLight;
+        }
+
+        input:checked+.slider:before {
+            -webkit-transform: translateX(13px);
+            -ms-transform: translateX(13px);
+            transform: translateX(13px);
+        }
+
+        /* Rounded sliders */
+        .slider.round {
+            border-radius: 17px;
+        }
+
+        .slider.round:before {
+            border-radius: 50%;
+        }
+
+        i::before {
+            color: $clr0;
+        }
+    }
+
+
+
+
+}
