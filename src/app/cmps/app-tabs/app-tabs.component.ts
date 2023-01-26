@@ -18,7 +18,7 @@ export class AppTabsComponent implements OnInit, OnDestroy {
     ngOnInit(): void {
         this.contactsSub = this.contactsService.contactsDB$.subscribe((contacts) => {
             this.totalUnreadCount = contacts.reduce((total: number, contact: Contact) => {
-                return total + contact.unread
+                return (!contact.isMute) ? total + contact.unread : total
             }, 0)
         })
     }

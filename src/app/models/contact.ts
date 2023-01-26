@@ -21,5 +21,6 @@ export interface Contact {
     "unread": number
     state: ContactState
     moto: string
-
+    isMute: boolean
+    isBlocked: boolean
 }

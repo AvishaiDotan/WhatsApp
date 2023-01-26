@@ -1,20 +1,20 @@
 <header class="contact-details-header">
-    <i class="pi pi-arrow-left"></i>
+    <i (click)="goBack()" class="pi pi-arrow-left"></i>
 </header>
 
 <section class="contact-details-data">
-    <img [src]="contact?.picture?.large" alt="">
+    <img [src]="contact.picture.large" alt="">
     <h2 class="name">
-        {{contact?.name?.first + ' ' + contact?.name?.last}}
+        {{contact.name.first + ' ' + contact.name.last}}
     </h2>
     <p class="phone-number-1">
-        {{contact?.phone}}
+        {{contact.phone}}
     </p>
 </section>
 
 <div class="moto-wrapper">
     <p class="moto">
-        {{contact?.moto}}
+        {{contact.moto}}
     </p>
 </div>
 
@@ -22,7 +22,7 @@
     <div class="details">
         <p>Other Mobiles</p>
         <p class="phone-number-2">
-            {{contact?.phone}}
+            {{contact.phone}}
         </p>
         <p>Mobile</p>
     </div>
@@ -35,18 +35,18 @@
         <p>Mute Notifications</p>
     </div>
     <label class="switch">
-        <input type="checkbox">
+        <input (change)="toggleProp('isMute', false)" [checked]="contact.isMute" type="checkbox">
         <span class="slider round"></span>
     </label>
 </section>
 
 <section class="block-actions">
-    <div class="block">
+    <div class="block" (click)="toggleProp('isBlocked', true)">
         <i class="pi pi-minus-circle"></i>
-        <p>Block {{contact?.name?.first + ' ' + contact?.name?.last}}</p>
+        <p>Block {{contact.name.first + ' ' + contact.name.last}}</p>
     </div>
-    <div class="delete">
+    <div class="delete" (click)="toggleProp('isBlocked', true)">
         <i class="bi bi-trash3"></i>
-        <p>Delete conversation with {{contact?.name?.first + ' ' + contact?.name?.last}}</p>
+        <p>Delete conversation with {{contact.name.first + ' ' + contact.name.last}}</p>
     </div>
 </section>

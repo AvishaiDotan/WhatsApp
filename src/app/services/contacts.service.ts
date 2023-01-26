@@ -37,7 +37,9 @@ export class ContactsService {
         if (!contacts) {
             let { results }: any = await lastValueFrom(this.http.get('https://randomuser.me/api/?inc=gender,picture,phone,id,name&results=150'))
             contacts = results
-            contacts.forEach((contact: Contact) => {
+            contacts.forEach((contact: Contact, idx: number) => {
+
+                
                 contact.msgs = this.utilService.getMessages('user', contact.id.value)
                 contact.unread = (Math.random() > 0.7) ? this.utilService.getRandomIntInclusive(1, contact.msgs.length - 1) : 0
                 
@@ -53,7 +55,9 @@ export class ContactsService {
 
             this.setOrder(contacts)
 
-        }     
+        }
+        
+        contacts = contacts.filter((contact: Contact) => !contact.isBlocked)
 
         this._contactsDB$.next(contacts)
         this.utilService.saveToStorage(this.contacts_key, contacts)
@@ -81,8 +85,6 @@ export class ContactsService {
 
         currThis._contactsDB$.next(contacts as never[])
         currThis.utilService.saveToStorage(this.contacts_key, contacts)
-
-        // currThis.addMsg(value, msg)
     }
 
     setSelectedContactById(contactId: string) {
@@ -102,7 +104,9 @@ export class ContactsService {
     }
 
     reloadContacts() {
-        const contacts = this._contactsDB$.getValue()
+        let contacts = this._contactsDB$.getValue()
+        contacts = contacts.filter((contact: Contact) => !contact.isBlocked)
+
         this.setOrder(contacts)
         this._contactsDB$.next(contacts)
     }
@@ -172,6 +176,7 @@ export class ContactsService {
 
         contacts[contactIdx] = contact
         this._contactsDB$.next(contacts as never[])
+
         this.utilService.saveToStorage(this.contacts_key, contacts)   
     }
 }

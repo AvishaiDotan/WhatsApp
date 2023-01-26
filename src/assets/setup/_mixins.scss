@@ -75,3 +75,11 @@
     align-items: center;
     justify-content: space-between;
 }
+
+
+@mixin flexbox-mixin($justify, $align, $direction) {
+    display: flex;
+    justify-content: $justify;
+    align-items: $align;
+    direction: $direction;
+}

@@ -24,7 +24,7 @@
                     <i *ngSwitchCase="'mute'" class="bi bi-volume-mute-fill"></i>
                 </div>
                 <p *ngIf="contact.unread !== 0" class="unread-msgs-count">
-                    {{contact.unread}}
+                    {{(!contact.isMute ? contact.unread : '')}}
                 </p>
             </div>
         </div>
